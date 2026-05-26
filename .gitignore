@@ -1,0 +1,108 @@
+# BUILD OUTPUTS - Generated during compilation
+
+[Bb]in/
+[Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
+*.dll
+*.exe
+*.so
+*.dylib
+
+# IDE AND EDITOR STATE - User-specific settings
+
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.swp
+*.tmp
+*.VS.xml
+.vscache
+
+# LOGS AND RUNTIME OUTPUT
+
+logs/
+*.log
+*.nlog
+TaskTracker.API/logs/
+
+# ASP.NET CORE SECRETS & LOCAL CONFIGURATION
+
+appsettings.Development.json
+appsettings.json
+**/appsettings.Development.json
+appsettings.IntegrationTests.json
+appsettings.Local.json
+**/appsettings.Local.json
+secrets.json
+*.Secrets.json
+launchSettings.json
+
+# NUGET & PACKAGE MANAGEMENT
+
+project.assets.json
+project.lock.json
+**/project.assets.json
+**/project.lock.json
+packages/
+.nuget/
+*.nupkg
+*.snupkg
+.paket/paket.exe
+paket-files/
+
+# TEST & CODE COVERAGE ARTIFACTS
+
+TestResults/
+coverage/
+coverage*.xml
+*.coverage
+*.coveragexml
+OpenCover/
+CodeCoverage/
+
+# OPERATING SYSTEM FILES
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+desktop.ini
+ehthumbs.db
+$RECYCLE.BIN/
+
+# ENTITY FRAMEWORK & DATABASE
+
+migrations_backup/
+*.db
+*.sqlite
+*.sqlite3
+
+# NODE & FRONTEND (if applicable)
+
+node_modules/
+npm-debug.log
+yarn-error.log
+dist/
+build/
+
+# MISC BUILD & TOOL ARTIFACTS
+
+*lscache
+.vscode-ngrok
+.github/
+/graphify-out
+
+# RIDER (JetBrains IDE)
+
+.idea/
+*.sln.iml
+out/
+
+# VISUAL STUDIO CODE WORKSPACE
+
+*.code-workspace
