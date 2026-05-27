@@ -106,3 +106,6 @@ out/
 # VISUAL STUDIO CODE WORKSPACE
 
 *.code-workspace
+
+/# OTHER GENERATED FILES
+/wwwroot/lib/
