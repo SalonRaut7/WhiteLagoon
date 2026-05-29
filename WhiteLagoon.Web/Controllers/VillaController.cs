@@ -35,7 +35,7 @@ public class VillaController : Controller
             _db.Villas.Add(obj);
             _db.SaveChanges();
             TempData["success"] = "Villa created successfully"; 
-            return RedirectToAction("Index");  
+            return RedirectToAction(nameof(Index));  
         }
         return View(obj); //if model state is not valid, we return the same view with the object to show validation errors
     }
@@ -59,7 +59,7 @@ public class VillaController : Controller
             _db.Villas.Update(obj);
             _db.SaveChanges();
             TempData["success"] = "Villa updated successfully";
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         TempData["error"] = "Error while updating villa";
         return View();
@@ -85,7 +85,7 @@ public class VillaController : Controller
             _db.Villas.Remove(objFromDb);
             _db.SaveChanges();
             TempData["success"] = "Villa deleted successfully"; // we can use TempData to pass a success message to the view, which will be displayed after redirection, TempData is a dictionary that is used to store data that needs to be available for the next request, it is stored in session and is available for only one request, after that it is automatically removed, we can use it to show success or error messages after redirection
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         TempData["error"] = "Error while deleting villa"; // if objFromDb is null, it means there was an error while deleting the villa, we can set an error message in TempData to show in the view
         return View();

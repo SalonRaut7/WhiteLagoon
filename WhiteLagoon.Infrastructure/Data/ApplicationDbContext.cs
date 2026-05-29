@@ -12,6 +12,7 @@ namespace WhiteLagoon.Infrastructure.Data
              
         }
         public DbSet<Villa> Villas { get; set; }
+        public DbSet<VillaNumber> VillaNumbers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -48,6 +49,44 @@ namespace WhiteLagoon.Infrastructure.Data
                     Price = 400,
                     Sqft = 750,
                 });
+            modelBuilder.Entity<VillaNumber>().HasData(
+                new VillaNumber
+                {
+                    Villa_Number = 101,
+                    VillaId = 1,
+                    SpecialDetails = "This villa number is located on the ground floor and has a beautiful garden view."
+                },
+                new VillaNumber
+                {
+                    Villa_Number = 102,
+                    VillaId = 1,
+                    SpecialDetails = "This villa number is located on the first floor and offers stunning ocean views."
+                },
+                new VillaNumber
+                {
+                    Villa_Number = 201,
+                    VillaId = 2,
+                    SpecialDetails = "This villa number is located on the ground floor and has direct access to the beach."
+                },
+                new VillaNumber
+                {
+                    Villa_Number = 202,
+                    VillaId = 2,
+                    SpecialDetails = "This villa number is located on the first floor and offers panoramic ocean views."
+                },
+                new VillaNumber
+                {
+                    Villa_Number = 301,
+                    VillaId = 3,
+                    SpecialDetails = "This villa number is located on the ground floor and features a private pool with a stunning view."
+                },
+                new VillaNumber
+                {
+                    Villa_Number = 302,
+                    VillaId = 3,
+                    SpecialDetails = "This villa number is located on the first floor and offers breathtaking views of the surrounding landscape."   
+                }
+            );
         }
     }
 }
