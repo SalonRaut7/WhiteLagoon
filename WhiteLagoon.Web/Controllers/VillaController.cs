@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WhiteLagoon.Application.Common.Interfaces;
 using WhiteLagoon.Domain.Entities;
 using WhiteLagoon.Infrastructure.Data;
 
@@ -6,15 +7,14 @@ namespace WhiteLagoon.Web.Controllers;
 
 public class VillaController : Controller
 {
-    private readonly ApplicationDbContext _db;  
-    public VillaController(ApplicationDbContext db)
+    private readonly IVillaRepository _villaRepo;  
+    public VillaController(IVillaRepository villaRepo)
     {
-        _db = db;
+        _villaRepo = villaRepo;
     }
-
     public IActionResult Index()
     {
-        var villas = _db.Villas.ToList();
+        var villas = _villaRepo.GetAll();
         return View(villas);
     }
 
@@ -32,18 +32,17 @@ public class VillaController : Controller
         }
         if(ModelState.IsValid)
         {
-            _db.Villas.Add(obj);
-            _db.SaveChanges();
+            _villaRepo.Add(obj);
+            _villaRepo.Save();
             TempData["success"] = "Villa created successfully"; 
             return RedirectToAction(nameof(Index));  
         }
         return View(obj); //if model state is not valid, we return the same view with the object to show validation errors
     }
 
-    [HttpGet]
     public IActionResult Update(int villaId)
     {
-        Villa? obj = _db.Villas.FirstOrDefault(u=>u.Id==villaId);
+        Villa? obj = _villaRepo.Get(v => v.Id == villaId);
         if(obj is null)
         {
             return RedirectToAction("Error","Home");
@@ -56,8 +55,8 @@ public class VillaController : Controller
     {
         if(ModelState.IsValid)
         {
-            _db.Villas.Update(obj);
-            _db.SaveChanges();
+            _villaRepo.Update(obj);
+            _villaRepo.Save();
             TempData["success"] = "Villa updated successfully";
             return RedirectToAction(nameof(Index));
         }
@@ -65,10 +64,9 @@ public class VillaController : Controller
         return View();
     }
 
-    [HttpGet]
     public IActionResult Delete(int villaId)
     {
-        Villa? obj = _db.Villas.FirstOrDefault(u=>u.Id==villaId);
+        Villa? obj = _villaRepo.Get(v => v.Id == villaId);
         if(obj is null)
         {
             return RedirectToAction("Error","Home");
@@ -79,11 +77,11 @@ public class VillaController : Controller
     [HttpPost]
     public IActionResult Delete(Villa obj)
     {
-        Villa? objFromDb = _db.Villas.FirstOrDefault(u => u.Id == obj.Id);
+        Villa? objFromDb = _villaRepo.Get(v => v.Id == obj.Id);
         if(objFromDb is not null)
         {
-            _db.Villas.Remove(objFromDb);
-            _db.SaveChanges();
+            _villaRepo.Remove(objFromDb);
+            _villaRepo.Save();
             TempData["success"] = "Villa deleted successfully"; // we can use TempData to pass a success message to the view, which will be displayed after redirection, TempData is a dictionary that is used to store data that needs to be available for the next request, it is stored in session and is available for only one request, after that it is automatically removed, we can use it to show success or error messages after redirection
             return RedirectToAction(nameof(Index));
         }
